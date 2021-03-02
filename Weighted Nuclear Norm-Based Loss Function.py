@@ -43,7 +43,7 @@ def gs_loss(input, target, tp = 'w_nuc', lambda_gs = 1e-8, w = torch.rand((batch
     
     if tp == 'w_nuc':
         u, s, v = torch.svd(delta_u.flatten(1, -1))
-        nn = s * w
+        nn = (s * w).sum()
     else:
         nn = torch.norm(delta_u.flatten(1, -1), p = tp)
     
